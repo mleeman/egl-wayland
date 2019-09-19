@@ -1,0 +1,34 @@
+From 0491b9364e2ed003af700a61de55edd7449034d0 Mon Sep 17 00:00:00 2001
+From: Marc Leeman <marc.leeman@gmail.com>
+Date: Mon, 9 Sep 2019 17:07:07 +0200
+Subject: [PATCH] wayland-thread: remove lock
+
+---
+ src/wayland-thread.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/wayland-thread.c b/src/wayland-thread.c
+index 79c874d..aae03cf 100644
+--- a/src/wayland-thread.c
++++ b/src/wayland-thread.c
+@@ -112,7 +112,7 @@ static void destroy_tls_key(void *data)
+     WlEventQueue *iter     = NULL;
+     WlEventQueue *tmp      = NULL;
+ 
+-    wlExternalApiLock();
++    /*wlExternalApiLock();*/
+ 
+     if (wlThread) {
+         wl_list_for_each_safe(iter, tmp, &wlThread->evtQueueList, threadLink) {
+@@ -159,7 +159,7 @@ static void destroy_tls_key(void *data)
+         free(wlThread);
+     }
+ 
+-    wlExternalApiUnlock();
++    /*wlExternalApiUnlock();*/
+ }
+ 
+ static void mainThread_exit(void) WL_EGL_ATTRIBUTE_DESTRUCTOR;
+-- 
+2.20.1
+

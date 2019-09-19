@@ -1,0 +1,34 @@
+From 2475d0c24fbc83a6d6c74e922ae69aaf62a139e5 Mon Sep 17 00:00:00 2001
+From: Marc Leeman <marc.leeman@gmail.com>
+Date: Mon, 9 Sep 2019 16:56:54 +0200
+Subject: [PATCH] wayland-eglsurface: remove lock
+
+---
+ src/wayland-eglsurface.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/wayland-eglsurface.c b/src/wayland-eglsurface.c
+index c738e6b..36874c8 100644
+--- a/src/wayland-eglsurface.c
++++ b/src/wayland-eglsurface.c
+@@ -97,7 +97,7 @@ wayland_throttleCallback(void *data,
+ 
+     (void) time;
+ 
+-    wlExternalApiLock();
++    /*wlExternalApiLock();*/
+ 
+     /* the surface could be destroyed while the lock was suspended in
+      * wlEglWaitFrameSync */
+@@ -111,7 +111,7 @@ wayland_throttleCallback(void *data,
+         surface->throttleCallback = NULL;
+     }
+ 
+-    wlExternalApiUnlock();
++    /*wlExternalApiUnlock();*/
+ }
+ 
+ static const struct wl_callback_listener throttle_listener = {
+-- 
+2.20.1
+
